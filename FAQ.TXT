@@ -1,0 +1,58 @@
+Q. I loaded up the document in my browser, but when I try to click 
+   on the links, I get an error like:
+   "Can't open file:///c|iodbc/sql.pl?DSN=" etc etc
+
+A. You cannot activate a link when you open an html document as
+   a local document. You need to access it through  a webserver.
+   I recommend HTTPS, which is available on:
+
+   http://emwac.ed.ac.uk/html/internet_toolchest/https/contents.htm
+
+Q. I installed perl according to the instructions, but I am still
+   getting error messages when I click on one of the URLs.
+
+A. Sometimes the system paths do not get updated during the perl
+   installation. You may need to go into the System applet on the
+   control panel, verify that the perl path is in there, and click
+   on OK. Then stop and restart https.
+
+Q. Ok. It still doesn't work!!!
+
+A. You may also need to copy the perl interpreter (perl.exe) into the
+   directory you are running the html documents. (NOT!!!!!!!!)
+
+   I lied. Please don't ever do this.
+   A message on Usenet made me realize that this is a really
+   terrible thing to do. Leaving perl in your http directory is inviting
+   trouble. Try:
+
+   http://localhost/perl.exe?-e+%22%60echo+y+%3E+test.txt%60%3B%22%0D%0A
+
+   It will write to a file in your http directory, which is Something Bad.
+
+Q. I installed the Data Source correctly, but when I view the pages
+   from my web browser, I get the error:
+   "Data source name not found and no default driver specified."
+
+A. If the version of the ODBC Administrator that you are running
+   supports System DSNs, please create the Data Source name using
+   that facility. This will allow all users on the system to 
+   access the given data sources. Otherwise, you will have to designate
+   a user name for https to run under. In the services applet under the
+   Control Panel, you can make this assignment. You will have to set up
+   the data sources for that user.
+
+   Also, you *must* be using 32-bit ODBC drivers and Data Sources.
+
+Q. I don't have ODBC installed on my computer, but there is an SQL Server
+   that I have access to which I would like to test this against.
+
+A. You can get 32-bit ODBC from:
+
+   ftp://ftp.microsoft.com/bussys/sql_odbc/odbc-public/odbc25.exe
+
+   And install according to instructions. Note that this only
+   includes (as of this writing) the SQL Server driver.
+
+
+

@@ -1,0 +1,54 @@
+iodbc.pm                                                  iodbc.pm
+
+NAME
+    iodbc.pm - perl base class for iodbc queries
+
+SYNOPSIS
+    use iodbc;
+    $query_instance = new iodbc;
+
+    createquery $query_instance "SELECT * FROM sometable";
+    $dsn = "DATA SOURCE NAME";
+    sqlexec $query_instance $dsn;
+    printresults $query_instance;
+
+DESCRIPTION
+    The iodbc class encapsulates the basic functionality needed to
+    pass a query to Lee Fesperman's iodbc.exe. Upon query execution,
+    the query results are parsed into a scalar array, each element of
+    which contains a hash indexed by the field names. The iodbc::printresults
+    method contains an example of how that information can be accessed,
+    without explicit knowledge of the record count or the names of the
+    fields.
+
+METHODS
+    iodbc::new
+       create an instance of the iodbc class.
+       Sample: $myquery = new iodbc;
+
+    iodbc::createquery
+       Prepare the query for execution.
+       Sample: createquery $myquery "SELECT * FROM mytable";
+
+    iodbc::sqlexec
+       Specify a data source name, user name, and password; then execute
+       the query.
+       Sample:
+               $dsn      = "MY DATA SOURCE";
+               $username = "ME";
+               $password = "MYPASSWORD";
+               sqlexec $myquery $dsn $username $password;
+
+    iodbc::sqlqueryparse
+       used by sqlexec to parse the query into the $self->{'results'}
+       array. Should probably be moved into sqlexec...
+
+    iodbc::printresults
+       cheap routine to dump each record and column in a query's
+       result set.
+       Sample: printresults $myquery;
+
+    iodbc::error
+       used by printresults to determine if an error occurred. If it did,
+       it returns a true value and prints out the error information. If
+       not, it returns a false value.   

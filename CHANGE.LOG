@@ -1,0 +1,21 @@
+Version 0.20B
+Tuesday, November 8, 1995 bjepson  <bjepson@conan.ids.net>
+
+        * added support and examples for templates, which are
+          a lot more secure and flexible than embedded SQL.
+
+Version 0.12B
+Fri Oct 6  09:33:00 1995  bjepson  <bjepson@conan.ids.net>
+
+        * removed bad advice on placement of perl interpreter in
+          faq.txt.
+
+Version 0.11B
+Tue Sep 26 15:01:36 1995  bjepson  <bjepson@conan.ids.net>
+
+	* Added a few more entries to FAQ.TXT
+
+Version 0.10B
+Thu Sep 21 08:42:00 1995  bjepson <bjepson@conan.ids.net>
+
+	* First release

@@ -1,0 +1,68 @@
+               Readme File for iodbc Version 0.11 (Beta Build 002)
+                                 7/26/95
+
+iodbc is an NT 32 bit console application that emulates the operation of
+the SQL Server console program - isql.  It supports equivalent
+functionality while providing access to ODBC databases.
+
+iodbc reads SQL commands from the console.  When it receives a 'go'
+command, it outputs the formatted results of the SQL.  Terminate iodbc
+with exit or quit.  go, exit, quit must be on separate lines.
+
++  Included files
+  -  readme.002  -  this file
+  -  iodbc.exe   -  NT 32 bit console application
+  -  iodbc.c     -  C source file
+  -  iodbc.h     -  C header file for iodbc.c
+
++  Toggles supported by iodbc 0.11
+   -  /d  -  USE database (special for SQL SERVER) (default = none)
+   -  /H  -  workstation name (special for SQL SERVER) (default = none)
+   -  /U  -  user id (default = none)
+   -  /P  -  user password (default = none)
+   -  /S  -  data source name (not servername!) (default = 'default')
+   -  /e  -  echo SQL input (default = SQL not echoed)
+   -  /n  -  suppress prompt (default = prompts printed)
+   -  /s  -  column separator on formatted report (default = ' ')
+   -  /l  -  set login (connect) timeout (default = 8 seconds)
+   -  /t  -  set query timeout (default = 8 seconds)
+   -  /m  -  set error level for display of error messages (default = 16) -
+             Level 1   : (warning) SQL_SUCCESS_WITH_INFO
+             Level 16  : (error) SQL_ERROR
+             Level 256 : (fatal) Allocation Failure
+   -  /w  -  set column width (default = 80)
+   -  /?  -  dump toggle documentation
+   -  /z  -  turn off log-in message (special for iodbc)
+
++  Commands supported by iodbc 0.11 (no parameters supported!)
+   -  go     -  execute sql batch (no parameters)
+   -  exit   -  exit iodbc (same as quit, no parameters)
+   -  reset  -  clear sql batch
+   -  quit   -  quit iodbc
+   -  help   -  show command help (special for iodbc)
+
++  To make executable from source
+   -  Make NT 32 Console Application
+   -  Compile requires ODBC header files - sql.h, sqlext.h
+   -  Link requires ODBC driver manager import lib - odbc32.lib
+
++  New in version 0.11
+   -  changed toggle - /z (previously was /l)
+   -  new toggles - /l, /t, /m, /w, /?
+   -  fix to /s processing (first column contains /s character)
+   -  fix to toggle processing (allows /Ulee)
+   -  improved ODBC error processing
+   -  fix error messages to be closer to isql (assigned levels - see /m)
+
++  Planned for first release
+   -  help file documenting program
+   -  support for /L, /q, /Q, /h, /r, /i, /o, /a toggles
+   -  parameters for exit and go
+   -  use
+   -  translation of ODBC formats (literals, names)
+
++  Planned for second release
+   -  connect and commit commands
+   -  catalog command for ODBC catalog operations
+   -  set connect/statement options
+

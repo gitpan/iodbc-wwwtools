@@ -1,0 +1,121 @@
+<html>
+<head>
+<title>This is a sample page which links to iodbc</title>
+</head>
+
+<body>
+<h1>This is a sample page which links to iodbc</h1>
+For all questions and comments, please email
+<a href=mailto:bjepson@conan.ids.net>bjepson@conan.ids.net</a><p>
+
+This page has been updated to include support for template files. These
+are much more secure (and flexible!!!) than the embedded SQL. See
+the template example below...<P>
+
+Note that this distribution includes Lee Fesperman's iodbc.exe,
+which is in beta right now. For more info, see iodbc.002. Please
+send all bug reports and other support requests to me (Brian Jepson)
+at the above address. I will be fielding all support issues for both
+iodbc and the perl scripts for now...<p>
+
+<h2>Installation notes</h2>
+<ol>         
+<li>Make sure that you unzip this into your https data directory
+	(alternatively, you can point https at the directory
+	you unzip it into...)
+<li>Unzip the distribution into a directory using the -d switch.
+<li>Make sure that you have <a href=ftp://ntperl.hip.com/ntperl>Windows NT perl 5</a>
+	installed and in the system path.
+<li>Use the <b>32-bit</b> ODBC Administrator to install a FoxPro
+	2.6 data source called "IODBC SAMPLE." It should require
+	a specific directory (the dbf directory under wherever you installed
+	the distribution); do <b>not</b> check the Use Current Directory
+	checkbox.
+<li>Make sure that you are using 
+	<a href=http://emwac.ed.ac.uk/html/internet_toolchest/https/contents.htm>
+	https version 0.99</a>
+<li>Under the control panel services applet, make sure that https
+	logs in as a user who has the datasource "IODBC SAMPLE"
+	defined; otherwise, https will not be able to connect to
+	the datasource. Alternatively, if you are using the newer version
+        of the ODBC Administrator, you can install a System DSN. This
+        is the preferred approach.
+</ol>
+
+<a href=template.pl?TEMPLATE=template/person.tpl&DSN=IODBC+SAMPLE>
+Template example</a><P>
+
+<a href=sql.pl?DSN=IODBC+SAMPLE&SQL=SELECT+*+FROM+person>
+	Simple Select Statement</a>
+
+<h2>Enter your own select statement</h2>
+<form action="sql.pl" method=get>
+Data Source:<input type="text" name ="DSN"><br>
+User Name:  <input type="text" name ="USER"><br>
+Password:   <input type="password" name = "PASSWORD"><br>
+<textarea name=SQL COLS=60 ROWS=4></textarea><p>
+<input type="SUBMIT">
+</form>
+<p>
+
+
+<h2>This is an INSERT statement example</h2>
+<form action="sql.pl" method=post>
+
+<!-- this is the tag which contains the data source name -->
+<input type="hidden" name="DSN"       value="IODBC SAMPLE">
+
+<!-- this is the tag which contains datatype definitions -->
+<input type="hidden" name="DATATYPES"
+   value="first_name!CHAR,last_name!CHAR">
+
+<!-- this is the tag which contains the sql statement -->
+<input type="hidden" name="SQL" 
+   value="INSERT INTO PERSON (PE_FNAME, PE_LNAME)
+               VALUES ($first_name, $last_name)">
+
+<!-- now, we simply include the fields which will go into
+the database. they must correspond to perl variables in
+the select statement above!! -->
+
+First Name:<input type="text" name="first_name"><P>
+Last Name:<input type="text" name="last_name"><P>
+
+
+<!-- and, finally, a submit button to finish it all!!! -->
+<input type="SUBMIT">
+</form>
+
+
+<h2>This is an UPDATE statement example</h2>
+<form action="sql.pl" method=post>
+
+<!-- this is the tag which contains the data source name -->
+<input type="hidden" name="DSN"       value="IODBC SAMPLE">
+
+<!-- this is the tag which contains datatype definitions -->
+<input type="hidden" name="DATATYPES"
+   value="first_name!CHAR,last_name!CHAR,id!CHAR">
+
+<!-- this is the tag which contains the sql statement -->
+<input type="hidden" name="SQL" 
+   value="UPDATE PERSON SET pe_fname=$first_name,
+                            pe_lname=$last_name
+                      WHERE pe_id   =$id">
+
+<!-- now, we simply include the fields which will go into
+the database. they must correspond to perl variables in
+the select statement above!! -->
+
+<input type="hidden" name="id" value="00004">
+First Name:<input type="text" name="first_name"><P>
+Last Name:<input type="text" name="last_name"><P>
+
+
+<!-- and, finally, a submit button to finish it all!!! -->
+<input type="SUBMIT">
+</form>
+
+</body>
+</html>
+
